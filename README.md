@@ -8,16 +8,25 @@ This repository is a collection of small projects that I am working on to build 
 
 Data cleaning is essential for meaningful analysis, as unclean data can lead to inaccurate and misleading insights. Through these projects, I’m transforming "messy" datasets into reliable, structured data ready for analysis.
 
-## Project List
+## Data Sources
+Club_member_info : The primary dataset used for this analysis is the "club_member_info.csv" file containg information about the members of a particular club
 
-### 1. Club Member Information
+### Tools
+- Excel
+- PostgreSQL for data cleaning
+
 
 #### Problem Statement
 
-In data analysis, ensuring data quality is critical for reliable results. Here are the data cleaning steps I followed to improve the dataset:
+In data analysis, ensuring data quality is critical for reliable results.
+## Data Cleaning
+Here are the data cleaning steps I followed to improve the dataset:
 
 1. **Creating a Temporary Table**: A temporary table was created to manipulate and restructure data without altering the original dataset.
-
+``` sql
+DROP TABLE IF EXISTS cleaned_club_member_info;
+CREATE TABLE cleaned_club_member_info
+```
 2. **Cleaning Names**:
    - Trimmed extra whitespace, removed special characters, and converted names to lowercase.
    - Used regex to remove any special characters from first names.
