@@ -1,12 +1,12 @@
 # Data Cleaning Projects
 
-A repository showcasing SQL data cleaning techniques, primarily using PostgreSQL.
+A repository for learning and practicing data cleaning techniques in SQL, primarily using PostgreSQL.
 
 ## Introduction
 
-This repository contains a collection of mini-projects designed for practicing data cleaning techniques using SQL, specifically in PostgreSQL. Each project aims to tackle common data quality issues encountered in real-world datasets. These projects were inspired by a post from Sushanta Khara on LinkedIn, which highlighted the importance of clean data for effective analysis.
+This repository is a collection of small projects that I am working on to build my data cleaning and analysis skills using SQL. Each project addresses common data quality issues and aims to improve data reliability through structured cleaning processes. Inspired by a post from Sushanta Khara on LinkedIn, this journey underscores the importance of clean data for effective analysis.
 
-Ensuring data quality is crucial in any data analysis process. Dirty or inconsistent data can lead to inaccurate or misleading insights. This repository focuses on transforming “dirty” data into reliable, structured datasets that can support sound decision-making and analysis.
+Data cleaning is essential for meaningful analysis, as unclean data can lead to inaccurate and misleading insights. Through these projects, I’m transforming "messy" datasets into reliable, structured data ready for analysis.
 
 ## Project List
 
@@ -14,32 +14,51 @@ Ensuring data quality is crucial in any data analysis process. Dirty or inconsis
 
 #### Problem Statement
 
-In data analysis, data must be clean and well-structured before meaningful insights can be drawn. Poor data quality often results in unreliable, inaccurate, and misleading outcomes. Key steps in the data cleaning process include:
+In data analysis, ensuring data quality is critical for reliable results. Here are the data cleaning steps I followed to improve the dataset:
 
-1. **Identifying and Removing Duplicate Records**: Ensuring unique entries in the dataset.
-2. **Trimming Extra Spaces and Removing Invalid Characters**: Cleaning text data to standardize values.
-3. **Splitting or Combining Fields as Needed**: Adjusting columns for the dataset’s requirements.
-4. **Validating Field Ranges**: Ensuring that values like age or dates fall within expected ranges.
-5. **Identifying and Addressing Outliers**: Recognizing unusual data points that could impact analysis.
-6. **Standardizing Misspellings or Incorrect Entries**: Maintaining consistency in naming conventions and entries.
-7. **Adding Relevant Calculated Fields**: Creating new columns to enhance data insights.
-8. **Handling Null and Missing Values**: Replacing or removing incomplete data as appropriate.
+1. **Creating a Temporary Table**: A temporary table was created to manipulate and restructure data without altering the original dataset.
 
-Following these guidelines, the goal is to create a clean and structured SQL table ready for analysis.
+2. **Cleaning Names**:
+   - Trimmed extra whitespace, removed special characters, and converted names to lowercase.
+   - Used regex to remove any special characters from first names.
+   - For last names with multiple words (e.g., 'de palma' or 'de la cruz'), converted the string to an array to calculate its length, then used a `CASE` statement to handle these cases.
+
+3. **Age Standardization**:
+   - Detected and removed any extra digit from ages with three-digit values by extracting only the first two digits.
+   - Checked for empty values and converted empty strings (`''`) to `NULL`.
+
+4. **Handling Marital Status**:
+   - Trimmed whitespace from the `marital_status` column, replaced misspellings using Common Table Expressions (CTEs), and ensured that empty values were set to `NULL`.
+
+5. **Phone Number Validation**:
+   - Trimmed whitespace, validated completeness, and set empty or incomplete entries to `NULL`.
+
+6. **Address Formatting**:
+   - Ensured each member has a full address for billing, allowing shared addresses for members in the same household.
+   - Converted addresses to lowercase, trimmed whitespace, and split full addresses into `street`, `city`, and `state` columns.
+
+7. **Job Title Standardization**:
+   - Removed whitespace, standardized titles by converting Roman numerals (I, II, III, IV) to numeric levels, and added level descriptors (e.g., "Level 3").
+   - Renamed the column to `occupation` and set empty titles to `NULL`.
+
+8. **Email Uniqueness**:
+   - Ensured all members have unique email addresses by identifying duplicate entries.
+
+Following these steps, I created a new, clean SQL table ready for analysis while gaining practical experience in SQL-based data cleaning.
 
 ## Datasets Used
 
-This repository contains a range of datasets, each chosen to illustrate and practice different SQL techniques for data cleaning. Key SQL concepts covered include:
+This repository contains various datasets, each providing practice opportunities in different SQL concepts essential for data cleaning:
 
-- **Core SQL Queries**: Using `SELECT`, `WHERE`, `GROUP BY`, and `HAVING` clauses to query data.
-- **Aggregate Functions**: Employing `COUNT`, `SUM`, `MIN`, `MAX`, and `AVG` to generate summary statistics.
-- **Join Operations**: Utilizing `INNER`, `OUTER`, `LEFT`, and `RIGHT` joins to merge datasets.
-- **CTEs, Temporary Tables, and Views**: Organizing complex queries and improving query readability.
-- **String and Date Manipulation Functions**: Formatting and parsing text and date fields.
-- **Window Functions**: Applying `RANK`, `LEAD`, `LAG`, `ROW_NUMBER`, and `NTILE` to analyze data trends and ranks.
+- **Core SQL Queries**: Practicing `SELECT`, `WHERE`, `GROUP BY`, and `HAVING`.
+- **Aggregate Functions**: Using `COUNT`, `SUM`, `MIN`, `MAX`, and `AVG`.
+- **Join Operations**: Practicing `INNER`, `OUTER`, `LEFT`, and `RIGHT` joins.
+- **CTEs, Temporary Tables, and Views**: Structuring complex queries for clarity.
+- **String and Date Functions**: Manipulating text and dates to standardize data using functions such as **make_date**.
 
-Each project provides hands-on practice with these techniques, primarily using PostgreSQL, to enhance your SQL skills in data cleaning and preparation.
+
+Each project is designed to develop practical SQL skills, particularly in PostgreSQL, as I continue my learning journey in data cleaning and quality management.
 
 ---
 
-Explore the projects and apply these data cleaning strategies to gain practical experience with SQL and data quality management. High-quality data lays the foundation for effective analysis and insightful results.
+Feel free to explore these projects to see how I’m progressing in data cleaning and gaining hands-on SQL experience. Clean data is the foundation of effective insights!
